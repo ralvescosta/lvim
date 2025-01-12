@@ -55,6 +55,10 @@ lvim.plugins = {
   },
 
   {
+    "rouge8/neotest-rust",
+  },
+
+  {
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-neotest/nvim-nio",
@@ -67,11 +71,16 @@ lvim.plugins = {
           "leoluz/nvim-dap-go",
         }
       },
+
     },
     config = function()
       require("neotest").setup({
         adapters = {
           require("neotest-go"),
+          require("neotest-rust") {
+            args = { "--no-capture" },
+            dap_adapter = "codelldb",
+          }
         },
       })
     end,

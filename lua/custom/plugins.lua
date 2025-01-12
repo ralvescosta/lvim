@@ -24,7 +24,7 @@ lvim.plugins = {
   },
 
   { "tpope/vim-surround" },
-  { "felipec/vim-sanegx", event = "BufRead" },
+  { "felipec/vim-sanegx",  event = "BufRead" },
   { "tpope/vim-repeat" },
 
   { "ThePrimeagen/harpoon" },
@@ -37,18 +37,6 @@ lvim.plugins = {
     end
   },
 
-  -- {
-  --   "nvim-telescope/telescope-frecency.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-telescope/telescope.nvim",
-  --     "kkharji/sqlite.lua"
-  --   },
-  --   config = function()
-  --     require("telescope").load_extension("frecency")
-  --   end,
-  -- },
-
   {
     "AckslD/nvim-trevJ.lua",
     config = 'require("trevj").setup()',
@@ -56,6 +44,39 @@ lvim.plugins = {
       vim.keymap.set("n", "<leader>j", function()
         require("trevj").format_at_cursor()
       end)
+    end,
+  },
+
+  {
+    "leoluz/nvim-dap-go",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
+    config = function()
+      require("dap-go").setup()
+    end
+  },
+
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      {
+        "nvim-neotest/neotest-go",
+        dependencies = {
+          "leoluz/nvim-dap-go",
+        }
+      },
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-go"),
+        },
+      })
     end,
   },
 }

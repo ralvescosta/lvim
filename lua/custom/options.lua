@@ -28,8 +28,19 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   -- "javascript",
   -- "typescript",
+  "terraform",
+  "dockerfile",
+  "bash",
   "yaml",
   "markdown",
+}
+
+lvim.builtin.mason.opts.ensure_installed = {
+  "gopls",
+  "delve",
+  "rustfmt",
+  "buf",
+  "rust-analyzer",
 }
 
 lvim.builtin.terminal.active = true
